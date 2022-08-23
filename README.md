@@ -12,7 +12,7 @@ Features
 * Client and server use TCP (SOCK_STREAM) for communications
 * Message passing stops when either user types either the EOF character (ˆD) or generates a SIGINT (^C) causing that end of the connection to terminate
 * **Server** side does the following: **`1.)`** utilizes `socket(2)` to set up for a connection, **`2.)`** attaches an address to the socket with `bind(2)`, **`3.)`** waits for a connection with `listen(2)`, **`4.)`** accepts a connection with `accept(2)`, **`5.)`** sends and receives with `send(2)` and `recv(2)` until done, **`6.)`** closes any remaining sockets with `close(2)`
-* **
+* **Client** side does the following: **`1.)`** looks up peer address with getaddrinfo(3), **`2.)`** opens up a `socket(2)` for connection, **`3.)`** connect to the server using `connect(2)`, **`4.)`** sends and receives with `send(2)` and `recv(2)` until done, **`5.)`** closes any remaining sockets with `close(2)`
 
 
 
@@ -24,7 +24,9 @@ Features
 * The **-N** option tells mytalk not to start the ncurses windowing. Used for debugging purposes as it will interact better with gdb
 * When the **server** starts it opens a socket on the given port and listens for connection attempts
 from a client. When a **client** starts, it attempts to open a connection to the server on the given host at the given port. 
-* If the connection is established, the client sends a packet containing the user’s username and waits for a response.It will display a message like the following "Waiting for response from hostname." When the connection is established, the server displays a message of the form: "Mytalk requesst from user@hostname. Accept (y/n)?" If the answer is anything other than "ok", connection is closed by the server.
+* If the connection is established, the client sends a packet containing the user’s username and waits for a response.It will display a message like the following "Waiting for response from *hostname*." When the connection is established, the server displays a message of the form: "Mytalk requesst from user@hostname. Accept (y/n)?" If the answer is anything other than "ok", connection is closed by the server.
 * If the connected succeeds, both server and client switch to a graphical mode where
 text from the remote machine is displayed in the top half of the screen and local text is
 displayed in the lower half using the ncurses library
+* Utilizes htonl(3), htons(3), ntohl(3), and ntohs(3) as appropriate
+* utilizes ncurses abstraction I/O library
