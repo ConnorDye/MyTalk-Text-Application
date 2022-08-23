@@ -7,7 +7,7 @@ Created by Connor Dye as an California Polytechnic University Project.
 
 Features
 --------
-* usage: mytalk [ -v ] [ -a ] [ -N ] [ hostname ] port. If a hostname is present then mytalk will act as a client. If a hostname is not present, mytalk will act as a server, opening a listening socket on the local machine at the given port.
+* usage: mytalk `[ -v ] [ -a ] [ -N ] [ hostname ] port`. If a hostname is present then mytalk will act as a client. If a hostname is not present, mytalk will act as a server, opening a listening socket on the local machine at the given port.
 * supports arguments `-v`, `-a`, `-N` where **-v** increases verbosity, **-a** will accept all connections without asking, and **-N** will not start ncurses windowing
 * Client and server use TCP (SOCK_STREAM) for communications
 * Message passing stops when either user types either the EOF character (ˆD) or generates a SIGINT (^C) causing that end of the connection to terminate
