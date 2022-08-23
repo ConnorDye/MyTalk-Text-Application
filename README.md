@@ -1,4 +1,4 @@
-# MyTalk Text and Messaging Application
+#MyTalk Text and Messaging Application
 ==============
 
 This program allows a user on one machine to send and receive messages from another user on another machine. This program implements a server and client.
