@@ -29,4 +29,4 @@ from a client. When a **client** starts, it attempts to open a connection to the
 text from the remote machine is displayed in the top half of the screen and local text is
 displayed in the lower half using the ncurses library
 * Utilizes htonl(3), htons(3), ntohl(3), and ntohs(3) as appropriate
-* utilizes ncurses abstraction I/O library
+* utilizes ncurses abstraction I/O library. Note the ncurses has to shift the terminal into noncanonical mode meaning characters are shown to the application as soon as they're typed. This is an issue as we want to give the user control over when they send there message, so we use a function called read_from_input() so the input file descriptor will block until the entire line has been typed. While it is blocked, it will not listen to the network socket. Therefore we utilize the libraries other functions update_input_buffer() and has_whole_line(), which allow for the program to read as much input as possible without blocking before waiting on poll(2) for input from anywhere. The library also utilizes has_hit_eof() to return a line if there exists a line with an EOF.
